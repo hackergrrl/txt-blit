@@ -8,21 +8,11 @@ app.use(countTheSeconds)
 function view (state) {
   var screen = []
 
-  blit(screen, renderHelloBox(), Math.floor(Math.sin(state.seconds / 5.0) * 10 + process.stdout.columns/2), 3)
+  var x = Math.floor(Math.sin(state.seconds / 5.0) * 10 + process.stdout.columns / 2)
+  blit(screen, renderHelloBox(), x, 3)
   blit(screen, renderTimer(state), 10, 10)
 
   return screen.join('\n')
-}
-
-function renderHelloBox (state) {
-  return [
-    '|-----------------------|',
-    '|                       |',
-    '|      HELLO THERE      |',
-    '|    ~~~~~~~~~~~~~~~    |',
-    '|                       |',
-    '|-----------------------|',
-  ]
 }
 
 function countTheSeconds (state, bus) {
@@ -67,7 +57,6 @@ function renderHelloBox () {
     '|      HELLO THERE      |',
     '|    ~~~~~~~~~~~~~~~    |',
     '|                       |',
-    '|-----------------------|',
+    '|-----------------------|'
   ]
 }
-

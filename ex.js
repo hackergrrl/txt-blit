@@ -7,7 +7,7 @@ function renderHelloBox () {
     '|      HELLO THERE      |',
     '|    ~~~~~~~~~~~~~~~    |',
     '|                       |',
-    '|-----------------------|',
+    '|-----------------------|'
   ]
 }
 
@@ -18,4 +18,3 @@ blit(screen, renderHelloBox(), 25, 10)
 blit(screen, renderHelloBox(), 10, 7)
 
 console.log(screen.join('\n'))
-
