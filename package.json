@@ -2,7 +2,7 @@
   "name": "txt-blit",
   "description": "draw lines of text onto other lines of text",
   "author": "Stephen Whitmore <sww@eight.net>",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "repository": {
     "url": "git://github.com/noffle/txt-blit.git"
   },
@@ -13,8 +13,7 @@
     "test": "tape test/*.js",
     "lint": "standard"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "dependencies": {},
   "devDependencies": {
     "tape": "~4.6.2",
