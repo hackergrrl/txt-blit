@@ -1,4 +1,4 @@
-var util = require("./util")
+var util = require('./util')
 module.exports = blit
 
 // Applies 'lines' to 'screen' at coordinates x/y
@@ -13,7 +13,7 @@ function blit (screen, lines, x, y) {
   }
 
   // patch lines
-  for (var i=y; i < y + lines.length; i++) {
+  for (var i = y; i < y + lines.length; i++) {
     tmp[i] = mergeString(tmp[i], lines[i - y], x)
   }
 
@@ -31,4 +31,3 @@ function mergeString (src, string, x) {
 
   return util.sliceAnsi(res, 0, x) + string + util.sliceAnsi(res, x + util.strlenAnsi(string))
 }
-
