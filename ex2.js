@@ -5,6 +5,18 @@ var chalk = require('chalk')
 var app = neatLog(view)
 app.use(countTheSeconds)
 
+var colours = [
+  chalk.black,
+  chalk.red,
+  chalk.green,
+  chalk.yellow,
+  chalk.blue,
+  chalk.magenta,
+  chalk.cyan,
+  chalk.white,
+  chalk.gray
+]
+
 function view (state) {
   var screen = []
 
@@ -24,25 +36,6 @@ function countTheSeconds (state, bus) {
 }
 
 function renderTimer (state) {
-  var colours = [
-    chalk.black,
-    chalk.red,
-    chalk.green,
-    chalk.yellow,
-    chalk.blue,
-    chalk.magenta,
-    chalk.cyan,
-    chalk.white,
-    chalk.gray,
-    chalk.redBright,
-    chalk.greenBright,
-    chalk.yellowBright,
-    chalk.blueBright,
-    chalk.magentaBright,
-    chalk.cyanBright,
-    chalk.whiteBright
-  ]
-
   var colourize = colours[Math.floor(Math.random() * colours.length)]
 
   return [

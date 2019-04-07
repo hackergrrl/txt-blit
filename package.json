@@ -17,6 +17,7 @@
     "is-fullwidth-code-point": "^3.0.0"
   },
   "devDependencies": {
+    "neat-log": "^3.0.1",
     "standard": "~10.0.0"
   },
   "license": "ISC"
