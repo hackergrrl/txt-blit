@@ -1,5 +1,7 @@
-module.exports = { sliceAnsi, strlenAnsi }
+module.exports = { sliceAnsi, strlenAnsi, emojicount }
 var isFullwidth = require("is-fullwidth-code-point")
+var emojiRegex = require("emoji-regex")
+var emojiPattern = emojiRegex()
 
 // Like String#slice, but taking ANSI codes into account
 function sliceAnsi (str, from, to) {
@@ -13,8 +15,9 @@ function sliceAnsi (str, from, to) {
     if (chr === '\033') insideCode = true
     if (!insideCode) len += chrlen(chr)
     if (chr === 'm' && insideCode) insideCode = false
+    var tmplen = len - emojicount(str.substring(0, i+1))
 
-    if (len > from && len <= to) {
+    if (tmplen > from && tmplen <= to) {
       res += chr
     }
   }
@@ -34,9 +37,14 @@ function strlenAnsi (str) {
     if (chr === 'm' && insideCode) insideCode = false
   }
 
-  return len
+  return len - emojicount(str)
 }
 
 function chrlen (chr) {
-    return isFullwidth(chr.codePointAt(0)) ? 2 : 1
+    if (isFullwidth(chr.codePointAt(0))) return 2
+    return 1
+}
+
+function emojicount (str) {
+    return (str.match(emojiPattern) || "").length
 }
