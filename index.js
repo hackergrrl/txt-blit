@@ -23,11 +23,10 @@ function blit (screen, lines, x, y) {
 
 // String, String -> String
 function mergeString (src, string, x) {
-  var res = src
-  var extraCharsNeeded = (x + util.strlenAnsi(string)) - util.strlenAnsi(src)
-  if (extraCharsNeeded > 0) {
-    res += (new Array(extraCharsNeeded).fill(' ')).join('')
+  var extraWidthNeeded = (x - 1 + util.strlenAnsi(string)) - util.strlenAnsi(src)
+  if (extraWidthNeeded > 0) {
+    src += (new Array(extraWidthNeeded).fill(' ')).join('')
   }
 
-  return util.sliceAnsi(res, 0, x) + string + util.sliceAnsi(res, x + util.strlenAnsi(string))
+  return util.sliceAnsi(src, 0, x) + string + util.sliceAnsi(src, x + util.strlenAnsi(string))
 }

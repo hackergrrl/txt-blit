@@ -1,21 +1,21 @@
 {
   "name": "txt-blit",
   "description": "draw lines of text onto other lines of text",
-  "author": "Stephen Whitmore <sww@eight.net>",
+  "author": "Kira Oakley <kira@eight.net>",
   "version": "1.0.2",
   "repository": {
-    "url": "git://github.com/noffle/txt-blit.git"
+    "url": "git://github.com/hackergrrl/txt-blit.git"
   },
-  "homepage": "https://github.com/noffle/txt-blit",
-  "bugs": "https://github.com/noffle/txt-blit/issues",
+  "homepage": "https://github.com/hackergrrl/txt-blit",
+  "bugs": "https://github.com/hackergrrl/txt-blit/issues",
   "main": "index.js",
   "scripts": {
     "lint": "standard"
   },
   "keywords": [],
   "dependencies": {
-    "emoji-regex": "^8.0.0",
-    "is-fullwidth-code-point": "^3.0.0"
+    "strip-ansi": "^7.1.0",
+    "wcwidth": "^1.0.1"
   },
   "devDependencies": {
     "neat-log": "^3.0.1",

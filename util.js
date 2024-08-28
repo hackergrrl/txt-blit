@@ -1,9 +1,8 @@
-module.exports = { sliceAnsi, strlenAnsi, emojicount }
-var isFullwidth = require("is-fullwidth-code-point")
-var emojiRegex = require("emoji-regex")
-var emojiPattern = emojiRegex()
+module.exports = { sliceAnsi, strlenAnsi }
+var stripAnsi = require('strip-ansi')
+var wcwidth = require('wcwidth')
 
-// Like String#slice, but taking ANSI codes into account
+// Like String#slice, but taking ANSI codes into account.
 function sliceAnsi (str, from, to) {
   var len = 0
   var insideCode = false
@@ -13,11 +12,10 @@ function sliceAnsi (str, from, to) {
   for (var i=0; i < str.length; i++) {
     var chr = str.charAt(i)
     if (chr === '\033') insideCode = true
-    if (!insideCode) len += chrlen(chr)
+    if (!insideCode) len += wcwidth(chr)
     if (chr === 'm' && insideCode) insideCode = false
-    var tmplen = len - emojicount(str.substring(0, i+1))
 
-    if (tmplen > from && tmplen <= to) {
+    if (len > from && len <= to) {
       res += chr
     }
   }
@@ -25,26 +23,9 @@ function sliceAnsi (str, from, to) {
   return res
 }
 
-// Length of 'str' sans ANSI codes
+// Returns the horizontal visual extent (# of fixed-width chars) a string takes
+// up, taking ANSI escape codes into account. Assumes a UTF-8 encoded string.
 function strlenAnsi (str) {
-  var len = 0
-  var insideCode = false
-
-  for (var i=0; i < str.length; i++) {
-    var chr = str.charAt(i)
-    if (chr === '\033') insideCode = true
-    if (!insideCode) len += chrlen(chr)
-    if (chr === 'm' && insideCode) insideCode = false
-  }
-
-  return len - emojicount(str)
-}
-
-function chrlen (chr) {
-    if (isFullwidth(chr.codePointAt(0))) return 2
-    return 1
-}
-
-function emojicount (str) {
-    return (str.match(emojiPattern) || "").length
+  str = stripAnsi(str)
+  return wcwidth(str)
 }

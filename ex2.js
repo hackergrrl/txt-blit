@@ -32,7 +32,7 @@ function countTheSeconds (state, bus) {
   setInterval(function () {
     state.seconds++
     bus.emit('render')
-  }, 200)
+  }, 250)
 }
 
 function renderTimer (state) {
@@ -49,6 +49,8 @@ function renderHelloBox () {
     '|                       |',
     '|      HELLO THERE      |',
     '|    ~~~~~~~~~~~~~~~    |',
+    '|                       |',
+    '| IN  Юあ㏲㈝🥲 UNICODE |',
     '|                       |',
     '|-----------------------|'
   ]
