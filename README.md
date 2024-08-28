@@ -8,6 +8,9 @@ Handy low-level module that can be used for building
 Combines nicely with [neat-log](https://github.com/joehand/neat-log) for
 building reactive terminal apps.
 
+Unicode code points of 0-2 fixed-width font cells are supported, to the extent
+made possible by [wcswidth](https://github.com/timoxley/wcwidth).
+
 # Usage: simple component
 
 Let's make a reusable render component (a pure function that returns an array of
